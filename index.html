@@ -53,7 +53,7 @@
 			}
 			function changeInput() {
 				currentDeviceNumber = currentDeviceNumber + 1;
-				if (currentDeviceNumber == len(videoDevices)) {
+				if (currentDeviceNumber == videoDevices.length) {
 					currentDeviceNumber = 0;
 				}
 				startVideo(currentDeviceNumber);
