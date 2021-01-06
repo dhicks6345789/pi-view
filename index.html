@@ -33,6 +33,7 @@
 				}
 			}
 			function openFullscreen() {
+				getDevices()
 				if (video.requestFullscreen) {
 					video.requestFullscreen();
 				} else if (video.webkitRequestFullscreen) { /* Safari */
@@ -40,6 +41,10 @@
 				} else if (video.msRequestFullscreen) { /* IE11 */
 					video.msRequestFullscreen();
 				}
+			}
+			async function getDevices() {
+				const devices = await navigator.mediaDevices.enumerateDevices();
+				console.log(devices)
 			}
 		</script>
 	</head>
