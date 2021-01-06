@@ -18,6 +18,7 @@
 			}
 		</style>
 		<script>
+			// https://www.digitalocean.com/community/tutorials/front-and-rear-camera-access-with-javascripts-getusermedia
 			var video;
 			var videoDevices;
 			var currentDeviceNumber;
@@ -54,7 +55,7 @@
 			}
 		</script>
 	</head>
-	<body onload="startVideo()">
+	<body onload="onPageLoad()">
 		<div style="text-align:center;">
 			Press <button onclick="openFullscreen();">this button</button> to open in full screen mode. Press the "Esc" key to exit again.
 		</div>
