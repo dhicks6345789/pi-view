@@ -23,14 +23,14 @@
 			var videoDevices;
 			var currentDeviceNumber;
 
-			function onPageLoad() {
+			async function onPageLoad() {
 				currentDeviceNumber = 0;
 				devices = await navigator.mediaDevices.enumerateDevices();
 				videoDevices = devices.filter(device => device.kind === 'videoinput');
 				video = document.querySelector("#videoElement");
 				startVideo(currentDeviceNumber);
 			}
-			async function startVideo(videoDeviceNumber) {
+			function startVideo(videoDeviceNumber) {
 				console.log(videoDevices[currentDeviceNumber]["groupId"]);
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia({video:{width:{ideal:4096}, height:{ideal:2160}}, deviceId:{exact:videoDevices[currentDeviceNumber]["groupId"]}})
@@ -60,7 +60,7 @@
 			}
 		</script>
 	</head>
-	<body onload="onPageLoad">
+	<body onload="onPageLoad()">
 		<div style="text-align:center;">
 			<button onclick="openFullscreen();">Full Screen</button>
 			<button onclick="changeInput();">Change Input</button>
