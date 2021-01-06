@@ -44,7 +44,7 @@
 			}
 			async function getDevices() {
 				const devices = await navigator.mediaDevices.enumerateDevices();
-				console.log(devices)
+				console.log(devices[0].label)
 			}
 		</script>
 	</head>
