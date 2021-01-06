@@ -30,7 +30,7 @@
 				//deviceId:{exact:cameraOptions.value}
 				devices = await navigator.mediaDevices.enumerateDevices();
 				videoDevices = devices.filter(device => device.kind === 'videoinput');
-				console.log(videoDevices[videoDeviceNumber]["groupId"]);
+				console.log(videoDevices[currentDeviceNumber]["groupId"]);
 				video = document.querySelector("#videoElement");
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia({video:{width:{ideal:4096}, height:{ideal:2160}}})
