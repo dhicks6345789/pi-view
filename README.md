@@ -1,2 +1,14 @@
-# pi-view
-A handy full-screen webcam preview page.
+# Pi-View
+A handy full-screen video capture device input preview page.
+
+Just a single, basic HTML page with a simple video element in the middle that can be set to full screen.
+
+Intended for turning a laptop / Chromebook into a handy monitor to use with a [Raspberry Pi](https://www.raspberrypi.org/) and a cheap (£20) [HDMI-to-USB](https://www.amazon.co.uk/gp/product/B08F9PJ9Q1/ref=ppx_yo_dt_b_asin_title_o04_s00) adaptor. You'll also probably need a micro-to-full-size [HDMI cable](https://www.raspberrypi.org/products/micro-hdmi-to-standard-hdmi-a-cable/) (£8) to go from the Raspberry Pi to the USB adaptor.
+
+I've tested the USB adaptor linked to on Amazon above, it works well with the [Raspberry Pi 400](https://www.raspberrypi.org/products/raspberry-pi-400/) kit (which comes complete with an HDMI cable, so you just need to get the USB adaptor), displaying 1920 x 1080 ("Full HD") resolution on a Chromebook and Windows laptop. Many other very similar devices are available on Amazon / eBay / etc.
+
+The getUserMedia component on the page sets a high "ideal" screen resolution constraint so you shouild get up to a 4K display - the Raspberry Pi supports outputting 4K, but the adaptor used here scales that down to 1080p, and of course you'd need a laptop or Chromebook with a 4K display.
+
+There's a little bit of lag when using the mouse and keyboard on the Pi - usable for the command line and general point-and-click usage, but probably not any good for gaming.
+
+Requires a browser that supports getUserMedia, so should work on most reasonably modern browsers except on the iPad.
