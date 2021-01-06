@@ -25,12 +25,13 @@
 
 			function onPageLoad() {
 				currentDeviceNumber = 0;
-				startVideo(currentDeviceNumber);
-			}
-			async function startVideo(videoDeviceNumber) {
 				devices = await navigator.mediaDevices.enumerateDevices();
 				videoDevices = devices.filter(device => device.kind === 'videoinput');
 				video = document.querySelector("#videoElement");
+				startVideo(currentDeviceNumber);
+			}
+			async function startVideo(videoDeviceNumber) {
+				console.log(videoDevices[currentDeviceNumber]["groupId"]);
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia({video:{width:{ideal:4096}, height:{ideal:2160}}, deviceId:{exact:videoDevices[currentDeviceNumber]["groupId"]}})
 					.then(function (stream) {
@@ -51,7 +52,11 @@
 				}
 			}
 			function changeInput() {
-				console.log(videoDevices[currentDeviceNumber]["groupId"]);
+				currentDeviceNumber = currentDeviceNumber + 1;
+				if (currentDeviceNumber == len(videoDevices)) {
+					currentDeviceNumber = 0;
+				}
+				startVideo(currentDeviceNumber);
 			}
 		</script>
 	</head>
