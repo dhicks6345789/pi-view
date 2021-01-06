@@ -19,8 +19,15 @@
 		</style>
 		<script>
 			var video;
+			var videoDevices;
+			var videoDeviceNumber;
 
 			function startVideo() {
+				//deviceId:{exact:cameraOptions.value}
+				devices = await navigator.mediaDevices.enumerateDevices();
+				videoDevices = devices.filter(device => device.kind === 'videoinput');
+				videoDeviceNumber = 0;
+				console.log(videoDevices[videoDeviceNumber].deviceId);
 				video = document.querySelector("#videoElement");
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia({video:{width:{ideal:4096}, height:{ideal:2160}}})
@@ -41,10 +48,6 @@
 				} else if (video.msRequestFullscreen) { /* IE11 */
 					video.msRequestFullscreen();
 				}
-			}
-			async function getDevices() {
-				const devices = await navigator.mediaDevices.enumerateDevices();
-				console.log(devices[0].label)
 			}
 		</script>
 	</head>
