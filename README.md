@@ -11,7 +11,7 @@ You can find the live page [here](https://www.sansay.co.uk/pi-view). The page wi
 
 Unlike most camera preview windows, this video element doesn't mirror-flip the video.
 
-# Notes
+## Notes
 
 I've tested the USB adaptor linked to on Amazon above, it works well with the [Raspberry Pi 400](https://www.raspberrypi.org/products/raspberry-pi-400/) kit (which comes complete with an HDMI cable, so you just need to get the USB adaptor), displaying 1920 x 1080 ("Full HD") resolution on a Chromebook and Windows laptop. Many other very similar devices are available on Amazon / eBay / etc.
 
