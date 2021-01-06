@@ -20,13 +20,16 @@
 		<script>
 			var video;
 			var videoDevices;
-			var videoDeviceNumber;
+			var currentDeviceNumber;
 
-			function startVideo() {
+			function onPageLoad() {
+				currentDeviceNumber = 0;
+				startVideo(currentDeviceNumber);
+			}
+			async function startVideo(videoDeviceNumber) {
 				//deviceId:{exact:cameraOptions.value}
 				devices = await navigator.mediaDevices.enumerateDevices();
 				videoDevices = devices.filter(device => device.kind === 'videoinput');
-				videoDeviceNumber = 0;
 				console.log(videoDevices[videoDeviceNumber].deviceId);
 				video = document.querySelector("#videoElement");
 				if (navigator.mediaDevices.getUserMedia) {
