@@ -28,13 +28,11 @@
 				startVideo(currentDeviceNumber);
 			}
 			async function startVideo(videoDeviceNumber) {
-				//deviceId:{exact:cameraOptions.value}
 				devices = await navigator.mediaDevices.enumerateDevices();
 				videoDevices = devices.filter(device => device.kind === 'videoinput');
-				console.log(videoDevices[currentDeviceNumber]["groupId"]);
 				video = document.querySelector("#videoElement");
 				if (navigator.mediaDevices.getUserMedia) {
-					navigator.mediaDevices.getUserMedia({video:{width:{ideal:4096}, height:{ideal:2160}}})
+					navigator.mediaDevices.getUserMedia({video:{width:{ideal:4096}, height:{ideal:2160}}, deviceId:{exact:videoDevices[currentDeviceNumber]["groupId"]}})
 					.then(function (stream) {
 						video.srcObject = stream;
 					})
@@ -44,7 +42,6 @@
 				}
 			}
 			function openFullscreen() {
-				getDevices()
 				if (video.requestFullscreen) {
 					video.requestFullscreen();
 				} else if (video.webkitRequestFullscreen) { /* Safari */
@@ -53,11 +50,15 @@
 					video.msRequestFullscreen();
 				}
 			}
+			function changeInput() {
+				console.log(videoDevices[currentDeviceNumber]["groupId"]);
+			}
 		</script>
 	</head>
 	<body onload="onPageLoad()">
 		<div style="text-align:center;">
-			Press <button onclick="openFullscreen();">this button</button> to open in full screen mode. Press the "Esc" key to exit again.
+			<button onclick="openFullscreen();">Full Screen</button>
+			<button onclick="changeInput();">Change Input</button>
 		</div>
 		<div id="container">
 			<video autoplay="true" id="videoElement"></video>
