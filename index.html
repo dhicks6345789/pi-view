@@ -31,11 +31,11 @@
 				startVideo(currentDeviceNumber);
 			}
 			function startVideo(videoDeviceNumber) {
-				console.log(videoDevices[currentDeviceNumber]["groupId"]);
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia({video:{width:{ideal:4096}, height:{ideal:2160}}, deviceId:{exact:videoDevices[currentDeviceNumber]["groupId"]}})
 					.then(function (stream) {
 						video.srcObject = stream;
+						console.log(videoDevices[currentDeviceNumber]["groupId"]);
 					})
 					.catch(function (theError) {
 						console.log(theError);
