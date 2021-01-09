@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!-- A simple HTML page to view a video preview, useful for using a laptop as a monitor for a Raspberry Pi.
+Live version hosted at: https://www.sansay.co.uk/pi-view
+More details: https://github.com/dhicks6345789/pi-view
+This was very helpful in figuring out the details of how to use getUserMedia:
+	https://www.digitalocean.com/community/tutorials/front-and-rear-camera-access-with-javascripts-getusermedia
+-->
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -18,27 +24,26 @@
 			}
 		</style>
 		<script>
-			// https://www.digitalocean.com/community/tutorials/front-and-rear-camera-access-with-javascripts-getusermedia
 			var videoDevices;
 			var currentDeviceNumber;
 			var currentVideoStream;
 
+			// This is where main executation starts, when the page is loaded and ready.
 			async function onPageLoad() {
-				console.log(navigator.mediaDevices.getSupportedConstraints());
 				currentDeviceNumber = 0;
 				currentVideoStream = "";
+				// Get a list of available media input/output devices...
 				devices = await navigator.mediaDevices.enumerateDevices();
+				// ...and trim that list down to just video cameras.
 				videoDevices = devices.filter(device => device.kind === 'videoinput');
 				startVideo(currentDeviceNumber);
 			}
+			
+			// Connect to a specific camera.
 			function startVideo(videoDeviceNumber) {
 				video = document.querySelector("#videoElement");
 				constraints = {
-					video: {
-						width:{ideal:4096},
-						height:{ideal:2160},
-						deviceId: {exact:videoDevices[currentDeviceNumber]["deviceId"]}
-					}
+					video: {width:{ideal:4096}, height:{ideal:2160}, deviceId: {exact:videoDevices[currentDeviceNumber]["deviceId"]}}
 				}
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia(constraints)
@@ -51,6 +56,8 @@
 					});
 				}
 			}
+			
+			// Called when the user clicks the "Full Screen" button.
 			function openFullscreen() {
 				video = document.querySelector("#videoElement");
 				if (video.requestFullscreen) {
@@ -61,6 +68,8 @@
 					video.msRequestFullscreen();
 				}
 			}
+			
+			// Switches the input to the next camera in the list, or goes back round to the first one if we've hit the end of the list.
 			function changeInput() {
 				currentVideoStream.getTracks().forEach(function(track) {
 					track.stop();
@@ -74,6 +83,7 @@
 			}
 		</script>
 	</head>
+	<!-- The (very few) HTML elements that make up the page - two buttons and a video preview window. -->
 	<body onload="onPageLoad()">
 		<div style="text-align:center;">
 			<button onclick="openFullscreen();">Full Screen</button>
