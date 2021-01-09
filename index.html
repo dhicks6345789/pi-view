@@ -47,7 +47,7 @@
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia(constraints)
 					.then(function (stream) {
-						if currentVideoStream != "" {
+						if (currentVideoStream != "") {
 							currentVideoStream.getTracks().forEach(function(track) {
 								track.stop();
 							});
