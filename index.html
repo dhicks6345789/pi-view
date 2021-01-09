@@ -21,9 +21,11 @@
 			// https://www.digitalocean.com/community/tutorials/front-and-rear-camera-access-with-javascripts-getusermedia
 			var videoDevices;
 			var currentDeviceNumber;
+			var currentVideoStream;
 
 			async function onPageLoad() {
 				currentDeviceNumber = 0;
+				currentVideoStream = "";
 				devices = await navigator.mediaDevices.enumerateDevices();
 				videoDevices = devices.filter(device => device.kind === 'videoinput');
 				startVideo(currentDeviceNumber);
@@ -45,7 +47,13 @@
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia(constraints)
 					.then(function (stream) {
+						if currentVideoStream != "" {
+							currentVideoStream.getTracks().forEach(function(track) {
+								track.stop();
+							});
+						}
 						video.srcObject = stream;
+						currentVideoStream = stream;
 						console.log("video srcObject set");
 					})
 					.catch(function (theError) {
