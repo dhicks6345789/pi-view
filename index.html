@@ -24,6 +24,7 @@
 			var currentVideoStream;
 
 			async function onPageLoad() {
+				console.log(navigator.mediaDevices.getSupportedConstraints());
 				currentDeviceNumber = 0;
 				currentVideoStream = "";
 				devices = await navigator.mediaDevices.enumerateDevices();
