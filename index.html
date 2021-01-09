@@ -32,19 +32,16 @@
 				startVideo(currentDeviceNumber);
 			}
 			function startVideo(videoDeviceNumber) {
-				document.querySelector("#videoContainer").innerHTML = "";
-				document.querySelector("#videoContainer").innerHTML = "<video autoplay='true' id='videoElement'></video>";
+				//document.querySelector("#videoContainer").innerHTML = "";
+				//document.querySelector("#videoContainer").innerHTML = "<video autoplay='true' id='videoElement'></video>";
 				video = document.querySelector("#videoElement");
-				/*constraints = {
+				constraints = {
 					video: {
 						width:{ideal:4096},
-						height:{ideal:2160}
-					},
-					deviceId: {
-						exact:videoDevices[currentDeviceNumber]["groupId"]
+						height:{ideal:2160},
+						deviceId: {exact:videoDevices[currentDeviceNumber]["deviceId"]}
 					}
-				}*/
-				constraints = { video: { deviceId: { exact: videoDevices[currentDeviceNumber]["deviceId"] } } };
+				}
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia(constraints)
 					.then(function (stream) {
@@ -67,21 +64,15 @@
 				}
 			}
 			function changeInput() {
-				if (currentVideoStream == "") {
-					currentDeviceNumber = currentDeviceNumber + 1;
-					if (currentDeviceNumber == videoDevices.length) {
-						currentDeviceNumber = 0;
-					}
-					startVideo(currentDeviceNumber);
-				} else {
-					console.log(currentVideoStream);
-					currentVideoStream.getTracks().forEach(function(track) {
-						track.stop();
-					});
-					video = document.querySelector("#videoElement");
-					video.srcObject = null;
-					currentVideoStream = "";
+				currentVideoStream.getTracks().forEach(function(track) {
+					track.stop();
+				});
+				document.querySelector("#videoElement").srcObject = null;
+				currentDeviceNumber = currentDeviceNumber + 1;
+				if (currentDeviceNumber == videoDevices.length) {
+					currentDeviceNumber = 0;
 				}
+				startVideo(currentDeviceNumber);
 			}
 		</script>
 	</head>
