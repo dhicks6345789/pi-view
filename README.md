@@ -13,7 +13,7 @@ Unlike most camera preview windows, this video element doesn't mirror-flip the v
 
 ## Notes
 
-I've tested the USB adaptor linked to on Amazon above, it works well with the [Raspberry Pi 400](https://www.raspberrypi.org/products/raspberry-pi-400/) kit (which comes complete with an HDMI cable, so you just need to get the [USB adaptor](https://www.amazon.co.uk/gp/product/B08F9PJ9Q1/ref=ppx_yo_dt_b_asin_title_o04_s00)), displaying 1920 x 1080 ("Full HD") resolution on a Chromebook and Windows laptop. Many other very similar devices are available on Amazon / eBay / etc.
+I've tested the USB adaptor linked to on Amazon above, it works well with the [Raspberry Pi 400](https://www.raspberrypi.org/products/raspberry-pi-400/) kit (which comes complete with a micro-to-full-size HDMI cable, so you just need to get the [USB adaptor](https://www.amazon.co.uk/gp/product/B08F9PJ9Q1/ref=ppx_yo_dt_b_asin_title_o04_s00)), displaying 1920 x 1080 ("Full HD") resolution on a Chromebook and Windows laptop. Many other very similar devices are available on Amazon / eBay / etc.
 
 The getUserMedia component on the page sets a high "ideal" screen resolution constraint so you shouild get up to a 4K display - the Raspberry Pi supports outputting 4K, but the adaptor used here scales that down to 1080p, and of course you'd need a laptop or Chromebook with a 4K display.
 
