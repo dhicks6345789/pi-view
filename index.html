@@ -29,8 +29,8 @@
 				startVideo(currentDeviceNumber);
 			}
 			function startVideo(videoDeviceNumber) {
-				document.querySelector("#videoContainer").html("");
-				document.querySelector("#videoContainer").html("<video autoplay='true' id='videoElement'></video>");
+				document.querySelector("#videoContainer").innerHTML = "";
+				document.querySelector("#videoContainer").innerHTML = "<video autoplay='true' id='videoElement'></video>";
 				video = document.querySelector("#videoElement");
 				constraints = {
 					video: {
