@@ -34,7 +34,7 @@
 				document.querySelector("#videoContainer").innerHTML = "";
 				document.querySelector("#videoContainer").innerHTML = "<video autoplay='true' id='videoElement'></video>";
 				video = document.querySelector("#videoElement");
-				constraints = {
+				/*constraints = {
 					video: {
 						width:{ideal:4096},
 						height:{ideal:2160}
@@ -42,7 +42,8 @@
 					deviceId: {
 						exact:videoDevices[currentDeviceNumber]["groupId"]
 					}
-				}
+				}*/
+				constraints = { video: { deviceId: { exact: videoDevices[currentDeviceNumber]["groupId"] } } };
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia(constraints)
 					.then(function (stream) {
