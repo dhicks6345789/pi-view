@@ -19,7 +19,6 @@
 		</style>
 		<script>
 			// https://www.digitalocean.com/community/tutorials/front-and-rear-camera-access-with-javascripts-getusermedia
-			var video;
 			var videoDevices;
 			var currentDeviceNumber;
 
@@ -27,10 +26,12 @@
 				currentDeviceNumber = 0;
 				devices = await navigator.mediaDevices.enumerateDevices();
 				videoDevices = devices.filter(device => device.kind === 'videoinput');
-				video = document.querySelector("#videoElement");
 				startVideo(currentDeviceNumber);
 			}
 			function startVideo(videoDeviceNumber) {
+				document.querySelector("#videoContainer").empty();
+				document.querySelector("#videoContainer").html("<video autoplay='true' id='videoElement'></video>");
+				video = document.querySelector("#videoElement");
 				constraints = {
 					video: {
 						width:{ideal:4096},
@@ -53,6 +54,7 @@
 				}
 			}
 			function openFullscreen() {
+				video = document.querySelector("#videoElement");
 				if (video.requestFullscreen) {
 					video.requestFullscreen();
 				} else if (video.webkitRequestFullscreen) { /* Safari */
@@ -75,7 +77,7 @@
 			<button onclick="openFullscreen();">Full Screen</button>
 			<button onclick="changeInput();">Change Input</button>
 		</div>
-		<div id="container">
+		<div id="videoContainer">
 			<video autoplay="true" id="videoElement"></video>
 		</div>
 	</body>
