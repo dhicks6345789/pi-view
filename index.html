@@ -29,7 +29,7 @@
 				startVideo(currentDeviceNumber);
 			}
 			function startVideo(videoDeviceNumber) {
-				document.querySelector("#videoContainer").empty();
+				document.querySelector("#videoContainer").html("");
 				document.querySelector("#videoContainer").html("<video autoplay='true' id='videoElement'></video>");
 				video = document.querySelector("#videoElement");
 				constraints = {
