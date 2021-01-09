@@ -1,7 +1,7 @@
 # Pi-View
 A handy full-screen video capture device input preview page.
 
-image
+![Pi View running on a Chromebook](pi-view.png)
 
 Just a single, basic HTML page with a simple video element in the middle that can be set to full screen.
 
