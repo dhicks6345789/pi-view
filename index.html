@@ -43,18 +43,17 @@
 						exact:videoDevices[currentDeviceNumber]["groupId"]
 					}
 				}
-				console.log(constraints);
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia(constraints)
 					.then(function (stream) {
 						if (currentVideoStream != "") {
+							console.log(currentVideoStream);
 							currentVideoStream.getTracks().forEach(function(track) {
 								track.stop();
 							});
 						}
 						video.srcObject = stream;
 						currentVideoStream = stream;
-						console.log("video srcObject set");
 					})
 					.catch(function (theError) {
 						console.log(theError);
