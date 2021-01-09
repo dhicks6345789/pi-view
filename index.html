@@ -46,15 +46,8 @@
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia(constraints)
 					.then(function (stream) {
-						if (currentVideoStream != "") {
-							console.log(currentVideoStream);
-							currentVideoStream.getTracks().forEach(function(track) {
-								track.stop();
-							});
-						} else {
-							video.srcObject = stream;
-							currentVideoStream = stream;
-						}
+						video.srcObject = stream;
+						currentVideoStream = stream;
 					})
 					.catch(function (theError) {
 						console.log(theError);
@@ -72,11 +65,20 @@
 				}
 			}
 			function changeInput() {
-				currentDeviceNumber = currentDeviceNumber + 1;
-				if (currentDeviceNumber == videoDevices.length) {
-					currentDeviceNumber = 0;
+				if (currentVideoStream == "") {
+					currentDeviceNumber = currentDeviceNumber + 1;
+					if (currentDeviceNumber == videoDevices.length) {
+						currentDeviceNumber = 0;
+					}
+					startVideo(currentDeviceNumber);
+				} else {
+					console.log(currentVideoStream);
+					currentVideoStream.getTracks().forEach(function(track) {
+						track.stop();
+					});
+					document.querySelector("#videoElement").srcObject = None;
+					currentVideoStream = "";
 				}
-				startVideo(currentDeviceNumber);
 			}
 		</script>
 	</head>
