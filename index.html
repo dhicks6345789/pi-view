@@ -76,7 +76,8 @@
 					currentVideoStream.getTracks().forEach(function(track) {
 						track.stop();
 					});
-					document.querySelector("#videoElement").srcObject = None;
+					video = document.querySelector("#videoElement");
+					video.srcObject = None;
 					currentVideoStream = "";
 				}
 			}
