@@ -25,8 +25,8 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 		</style>
 		<script>
 			var videoDevices;
-			var currentDeviceNumber;
 			var currentVideoStream;
+			var currentDeviceNumber;
 
 			// This is where main executation starts, when the page is loaded and ready.
 			async function onPageLoad() {
@@ -42,11 +42,9 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 			// Connect to a specific camera.
 			function startVideo(videoDeviceNumber) {
 				video = document.querySelector("#videoElement");
-				constraints = {
-					video: {width:{ideal:4096}, height:{ideal:2160}, deviceId: {exact:videoDevices[currentDeviceNumber]["deviceId"]}}
-				}
 				if (navigator.mediaDevices.getUserMedia) {
-					navigator.mediaDevices.getUserMedia(constraints)
+					// We set the mediaDevice constraints to an "ideal" 4K resolution, the browser will simply scale down to the best resolution available.
+					navigator.mediaDevices.getUserMedia({video:{width:{ideal:4096},height:{ideal:2160},deviceId:{exact:videoDevices[currentDeviceNumber]["deviceId"]}}})
 					.then(function (stream) {
 						video.srcObject = stream;
 						currentVideoStream = stream;
