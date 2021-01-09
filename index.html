@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>FullScreen Viewer</title>
 		<style>
-			#container {
+			#videoContainer {
 				margin: 0px auto;
 				width: 64%;
 				height: 100%;
@@ -32,8 +32,6 @@
 				startVideo(currentDeviceNumber);
 			}
 			function startVideo(videoDeviceNumber) {
-				//document.querySelector("#videoContainer").innerHTML = "";
-				//document.querySelector("#videoContainer").innerHTML = "<video autoplay='true' id='videoElement'></video>";
 				video = document.querySelector("#videoElement");
 				constraints = {
 					video: {
