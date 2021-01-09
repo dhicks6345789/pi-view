@@ -34,16 +34,18 @@
 				constraints = {
 					video: {
 						width:{ideal:4096},
-						height:{ideal:2160},
-						deviceId: {exact:videoDevices[currentDeviceNumber]["groupId"]}
+						height:{ideal:2160}
+					},
+					deviceId: {
+						exact:videoDevices[currentDeviceNumber]["groupId"]
 					}
-					
 				}
+				console.log(constraints);
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia(constraints)
 					.then(function (stream) {
 						video.srcObject = stream;
-						console.log(videoDevices[currentDeviceNumber]["groupId"]);
+						console.log("video srcObject set");
 					})
 					.catch(function (theError) {
 						console.log(theError);
