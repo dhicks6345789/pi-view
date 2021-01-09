@@ -33,11 +33,11 @@
 			function startVideo(videoDeviceNumber) {
 				constraints = {
 					video: {
-						width:{ideal:4096}, height:{ideal:2160}
-					},
-					deviceId: {
-						exact:videoDevices[currentDeviceNumber]["groupId"]
+						width:{ideal:4096},
+						height:{ideal:2160},
+						deviceId: {exact:videoDevices[currentDeviceNumber]["groupId"]}
 					}
+					
 				}
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia(constraints)
