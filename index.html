@@ -44,7 +44,7 @@
 						exact:videoDevices[currentDeviceNumber]["groupId"]
 					}
 				}*/
-				constraints = { video: { deviceId: { exact: videoDevices[currentDeviceNumber]["groupId"] } } };
+				constraints = { video: { deviceId: { exact: videoDevices[currentDeviceNumber]["deviceId"] } } };
 				if (navigator.mediaDevices.getUserMedia) {
 					navigator.mediaDevices.getUserMedia(constraints)
 					.then(function (stream) {
