@@ -1,6 +1,8 @@
 # Pi-View
 A handy full-screen video capture device input preview page.
 
+image
+
 Just a single, basic HTML page with a simple video element in the middle that can be set to full screen.
 
 Intended for turning a laptop / Chromebook into a handy monitor to use with a [Raspberry Pi](https://www.raspberrypi.org/) and a cheap (£20) [HDMI-to-USB](https://www.amazon.co.uk/gp/product/B08F9PJ9Q1/ref=ppx_yo_dt_b_asin_title_o04_s00) adaptor. You'll also probably need a micro-to-full-size [HDMI cable](https://www.raspberrypi.org/products/micro-hdmi-to-standard-hdmi-a-cable/) (£8) to go from the Raspberry Pi to the USB adaptor.
