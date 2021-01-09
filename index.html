@@ -31,8 +31,16 @@
 				startVideo(currentDeviceNumber);
 			}
 			function startVideo(videoDeviceNumber) {
+				constraints = {
+					video: {
+						width:{ideal:4096}, height:{ideal:2160}
+					},
+					deviceId: {
+						exact:videoDevices[currentDeviceNumber]["groupId"]
+					}
+				}
 				if (navigator.mediaDevices.getUserMedia) {
-					navigator.mediaDevices.getUserMedia({video:{width:{ideal:4096}, height:{ideal:2160}}, deviceId:{exact:videoDevices[currentDeviceNumber]["groupId"]}})
+					navigator.mediaDevices.getUserMedia(constraints)
 					.then(function (stream) {
 						video.srcObject = stream;
 						console.log(videoDevices[currentDeviceNumber]["groupId"]);
