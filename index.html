@@ -47,7 +47,7 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 				devices = await navigator.mediaDevices.enumerateDevices();
 				// ...and trim that list down to just video cameras.
 				videoDevices = devices.filter(device => device.kind === 'videoinput');
-				consloe.log(videoDevices);
+				console.log(videoDevices);
 				startVideo(currentDeviceNumber);
 			}
 			
