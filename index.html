@@ -45,12 +45,18 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 				currentVideoStream = "";
 				// Get a list of available media input/output devices...
 				// devices = await navigator.mediaDevices.enumerateDevices();
-				navigator.mediaDevices.enumerateDevices()
+				navigator.mediaDevices.getUserMedia({audio: true, video: true})
 				.then(function (devices) {
-					// ...and trim that list down to just video cameras.
-					videoDevices = devices.filter(device => device.kind === 'videoinput');
-					console.log(videoDevices);
-					startVideo(currentDeviceNumber);
+					navigator.mediaDevices.enumerateDevices()
+					.then(function (devices) {
+						// ...and trim that list down to just video cameras.
+						videoDevices = devices.filter(device => device.kind === 'videoinput');
+						console.log(videoDevices);
+						startVideo(currentDeviceNumber);
+					})
+					.catch(function (theError) {
+						console.log(theError);
+					});
 				})
 				.catch(function (theError) {
 					console.log(theError);
