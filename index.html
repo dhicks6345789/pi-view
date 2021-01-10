@@ -45,7 +45,8 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 				currentVideoStream = "";
 				// Get a list of available media input/output devices...
 				// devices = await navigator.mediaDevices.enumerateDevices();
-				navigator.mediaDevices.getUserMedia({audio: true, video: true})
+				//navigator.mediaDevices.getUserMedia({audio: true, video: true})
+				navigator.mediaDevices.getUserMedia({video:{width:{ideal:4096},height:{ideal:2160}}})
 				.then(function (devices) {
 					navigator.mediaDevices.enumerateDevices()
 					.then(function (devices) {
