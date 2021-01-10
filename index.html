@@ -11,7 +11,7 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>FullScreen Viewer</title>
 		<style>
-			#videoContainer {
+			.videoContainer {
 				margin: 0px auto;
 				width: 64%;
 				height: 100%;
@@ -28,6 +28,14 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 				background-color: #666;
 				-webkit-transform: scaleX(-1);
 				transform: scaleX(-1);
+			}
+			.videoButton {
+				width: 45px;
+				height: 45px;
+				text-align: center;
+				border-radius: 100%;
+				margin: 0 6px;
+				background: transparent;
 			}
 		</style>
 		<script>
@@ -116,11 +124,11 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 	<!-- The (very few) HTML elements that make up the page - two buttons and a video preview window. -->
 	<body onload="onPageLoad()">
 		<div style="text-align:center;">
-			<button onclick="openFullscreen();">Full Screen</button>
-			<button onclick="changeInput();">Change Input</button>
-			<button onclick="setMirror();">Mirror Video</button>
+			<button class="videoButton" onclick="openFullscreen();">Full Screen</button>
+			<button class="videoButton" onclick="changeInput();">Change Input</button>
+			<button class="videoButton" onclick="setMirror();">Mirror Video</button>
 		</div>
-		<div id="videoContainer">
+		<div id="videoContainer" class="videoContainer">
 			<video autoplay="true" id="videoElement" class="videoUnmirrored"></video>
 		</div>
 		<div style="text-align:center;">
