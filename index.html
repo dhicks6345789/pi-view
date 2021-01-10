@@ -38,17 +38,23 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 			var currentDeviceNumber;
 
 			// This is where main executation starts, when the page is loaded and ready.
-			async function onPageLoad() {
+			function onPageLoad() {
 				video = document.querySelector("#videoElement");
 				videoMirrored = false;
 				currentDeviceNumber = 0;
 				currentVideoStream = "";
 				// Get a list of available media input/output devices...
-				devices = await navigator.mediaDevices.enumerateDevices();
-				// ...and trim that list down to just video cameras.
-				videoDevices = devices.filter(device => device.kind === 'videoinput');
-				console.log(videoDevices);
-				startVideo(currentDeviceNumber);
+				// devices = await navigator.mediaDevices.enumerateDevices();
+				navigator.mediaDevices.enumerateDevices()
+				.then(function (devices) {
+					// ...and trim that list down to just video cameras.
+					videoDevices = devices.filter(device => device.kind === 'videoinput');
+					console.log(videoDevices);
+					startVideo(currentDeviceNumber);
+				})
+				.catch(function (theError) {
+					console.log(theError);
+				});
 			}
 			
 			// Connect to a specific camera.
