@@ -17,19 +17,30 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 				height: 100%;
 				border: 0px #FFF solid;
 			}
-			#videoElement {
+			.videoUnmirrored {
 				width: 100%;
 				height: 100%;
 				background-color: #666;
 			}
+			.videoMirrored {
+				width: 100%;
+				height: 100%;
+				background-color: #666;
+				-webkit-transform: scaleX(-1);
+				transform: scaleX(-1);
+			}
 		</style>
 		<script>
+			var video;
 			var videoDevices;
+			var videoMirrored;
 			var currentVideoStream;
 			var currentDeviceNumber;
 
 			// This is where main executation starts, when the page is loaded and ready.
 			async function onPageLoad() {
+				video = document.querySelector("#videoElement");
+				videoMirrored = false;
 				currentDeviceNumber = 0;
 				currentVideoStream = "";
 				// Get a list of available media input/output devices...
@@ -41,7 +52,6 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 			
 			// Connect to a specific camera.
 			function startVideo(videoDeviceNumber) {
-				video = document.querySelector("#videoElement");
 				if (navigator.mediaDevices.getUserMedia) {
 					// We set the mediaDevice constraints to an "ideal" 4K resolution, the browser will simply scale down to the best resolution available.
 					navigator.mediaDevices.getUserMedia({video:{width:{ideal:4096},height:{ideal:2160},deviceId:{exact:videoDevices[currentDeviceNumber]["deviceId"]}}})
@@ -57,7 +67,6 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 			
 			// Called when the user clicks the "Full Screen" button.
 			function openFullscreen() {
-				video = document.querySelector("#videoElement");
 				if (video.requestFullscreen) {
 					video.requestFullscreen();
 				} else if (video.webkitRequestFullscreen) { /* Safari */
@@ -72,12 +81,23 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 				currentVideoStream.getTracks().forEach(function(track) {
 					track.stop();
 				});
-				document.querySelector("#videoElement").srcObject = null;
+				video.srcObject = null;
 				currentDeviceNumber = currentDeviceNumber + 1;
 				if (currentDeviceNumber == videoDevices.length) {
 					currentDeviceNumber = 0;
 				}
 				startVideo(currentDeviceNumber);
+			}
+			
+			// Mirror / unmirror the video preview pane.
+			function setMirror() {
+				if (videoMirrored) {
+					videoMirrored = false;
+					video.class = "videoUnmirrored";
+				} else {
+					videoMirrored = true;
+					video.class = "videoMirrored";
+				}
 			}
 		</script>
 	</head>
@@ -86,9 +106,10 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 		<div style="text-align:center;">
 			<button onclick="openFullscreen();">Full Screen</button>
 			<button onclick="changeInput();">Change Input</button>
+			<button onclick="setMirror();">Mirror Video</button>
 		</div>
 		<div id="videoContainer">
-			<video autoplay="true" id="videoElement"></video>
+			<video autoplay="true" id="videoElement" class="videoUnmirrored"></video>
 		</div>
 		<div>
 			Documentation and source code available on <a href="https://github.com/dhicks6345789/pi-view">Github</a>.
