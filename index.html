@@ -94,9 +94,11 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 				if (videoMirrored) {
 					videoMirrored = false;
 					video.class = "videoUnmirrored";
+					console.log("Now not mirrored.");
 				} else {
 					videoMirrored = true;
 					video.class = "videoMirrored";
+					console.log("Now mirrored.");
 				}
 			}
 		</script>
