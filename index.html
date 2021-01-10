@@ -43,16 +43,14 @@ This was very helpful in figuring out the details of how to use getUserMedia:
 				videoMirrored = false;
 				currentDeviceNumber = 0;
 				currentVideoStream = "";
-				// Get a list of available media input/output devices...
-				// devices = await navigator.mediaDevices.enumerateDevices();
-				//navigator.mediaDevices.getUserMedia({audio: true, video: true})
+				// Before we can get a list of media devices we need to request media permissions from the browser...
 				navigator.mediaDevices.getUserMedia({video:{width:{ideal:4096},height:{ideal:2160}}})
 				.then(function (devices) {
+					// ...then we can get a list of available media input/output devices...
 					navigator.mediaDevices.enumerateDevices()
 					.then(function (devices) {
 						// ...and trim that list down to just video cameras.
 						videoDevices = devices.filter(device => device.kind === 'videoinput');
-						console.log(videoDevices);
 						startVideo(currentDeviceNumber);
 					})
 					.catch(function (theError) {
