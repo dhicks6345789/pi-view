@@ -21,4 +21,4 @@ The getUserMedia component on the page sets a high "ideal" screen resolution con
 
 There's a little bit of lag when using the mouse and keyboard on the Pi - usable for the command line and general point-and-click usage, but probably not great for gaming.
 
-Requires a browser that supports getUserMedia, so should work on most reasonably modern browsers but will not work on an iPad.
+Requires a browser that supports getUserMedia, so should work on most reasonably modern browsers but will not work on an iPhone / iPad. Not tested on Android devices, although in theory I think it might work with a suitible USB female to whatever connector fits your phone.
